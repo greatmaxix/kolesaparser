@@ -1,4 +1,3 @@
-
 from numpy.core.records import array
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
@@ -12,16 +11,17 @@ import chromedriver_binary
 
 brandsToBeParsed = [
     'toyota',
-    'vaz',
-    'mercedes-benz',
-    'volkswagen',
-    'hyundai',
-    'nissan',
+    # 'vaz',
+    # 'mercedes-benz',
+    # 'volkswagen',
+    # 'hyundai',
+    # 'nissan',
 ]
 
 def findMaxNumberOfPages(driverWait: WebDriverWait) -> int:
     paginatorContainer = driverWait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'pager')))
     paginatorBtns = paginatorContainer.find_elements_by_xpath('.//ul/li')
+    return 1
     return int(paginatorBtns[-1].text)
 
 def getDbConnection():
@@ -37,7 +37,6 @@ def insertAppartments(appsData):
 
     connection = getDbConnection()
     cursor = connection.cursor()
-    # appsData = [(1,'x'), (2,'y')]
     records_list_template = ','.join(['%s'] * len(appsData))
     
     insert_query = 'INSERT INTO cars (brand, model, year, milleage, city, price, eng_vol, eng_type) VALUES {}'.format(records_list_template)
