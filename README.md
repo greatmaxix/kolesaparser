@@ -1,5 +1,5 @@
 # kolesaparser
-kolesa parser 
+kolesa.kz parser 
 
 
 # how to run
